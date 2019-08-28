@@ -34,9 +34,10 @@ export class PushService {
      console.log('Notificación recibida', noti);
      this.notificacionRecibida(noti);
     });
-    this.oneSignal.handleNotificationOpened().subscribe((noti) => {
+    this.oneSignal.handleNotificationOpened().subscribe(async (noti) => {
       // do something when a notification is opened
       console.log('Notificación abierta', noti);
+      await this.notificacionRecibida(noti.notification);
     });
     this.oneSignal.endInit();
   }
